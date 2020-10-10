@@ -1,0 +1,63 @@
+$main-color:  #409EFF;
+$border-color-out: #409EFF;
+$border-color: rgba(#409EFF, 0.5);
+$bg-color: rgba(#409EFF, 0.4);
+.home {
+  width: 600px;
+  margin: 50px auto;
+  .content {
+    position: relative;
+    display: block;
+    width: 540px;
+    height: 540px;
+    border: 3px solid $border-color-out;
+    overflow: hidden;
+    .cell {
+      display: block;
+      float: left;
+      width: 60px;
+      height: 60px;
+      line-height: 58px;
+      text-align: center;
+      color: $main-color;
+      font-size: 24px;
+      box-sizing: border-box;
+      border: 1px solid $border-color;
+    }
+    .cell.border-right {
+      border-right-color: $border-color-out;
+    }
+    .cell.border-bottom {
+      border-bottom-color: $border-color-out;
+    }
+    .cell.border-left {
+      border-left-color: $border-color-out;
+    }
+    .cell.border-top {
+      border-top-color: $border-color-out;
+    }
+    .cell.active {
+      background-color: $bg-color;
+      color: #fff;
+    }
+  }
+  .button {
+    position: relative;
+    display: block;
+    width: 540px;
+    border: 3px solid $border-color;
+    margin-top: 20px;
+    overflow: hidden;
+    .cell {
+      display: block;
+      float: left;
+      width: 60px;
+      height: 60px;
+      line-height: 58px;
+      text-align: center;
+      box-sizing: border-box;
+      border: 1px solid $border-color;
+      cursor: pointer;
+    }
+  }
+}
