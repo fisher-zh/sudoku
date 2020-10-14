@@ -32,11 +32,10 @@ class Home extends React.Component {
       sd: sd
     }));
     sd.init();
-    this.addNumber();
+    const arr = sd.sudukuArray;
+    this.addNumber(arr);
   }
-  addNumber() {
-    console.log(this.state);
-    const arr = this.state.sd.sudukuArray;
+  addNumber(arr) {
     const list = this.state.list;
     this.setState({
       list: list.map((item) => {
