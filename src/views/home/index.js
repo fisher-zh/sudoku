@@ -80,7 +80,9 @@ class Home extends React.Component {
           {cellList}
         </div>
         <NumberButton onNumberClick={this.handleNumberClick}/>
-        <button onClick={this.handleCreatClick}>重新生成</button>
+        <div className="tips-wrapper">
+          <button className="tips-button" onClick={this.handleCreatClick}>重新生成</button>
+        </div>
       </div>
     );
   }
