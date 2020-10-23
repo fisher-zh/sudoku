@@ -18,6 +18,7 @@ class Home extends React.Component {
       })
     }
     this.state = {
+      blankNum: 30,
       sd: null,
       currentActive: 0,
       list: list
@@ -27,13 +28,28 @@ class Home extends React.Component {
     this.handleCreatClick = this.handleCreatClick.bind(this);
   }
   componentDidMount () {
-    const sd = new Sudoku(30);
+    const sd = new Sudoku();
     this.setState((state, props) => ({
       sd: sd
     }));
     sd.init();
     const arr = sd.sudukuArray;
-    this.addNumber(arr);
+    console.log(arr);
+    const showArr = this.getShowArr(arr, this.state.blankNum);
+    this.addNumber(showArr);
+  }
+  getShowArr (arr, n) {
+    let newArr = [].concat(arr);
+    while (n > 0) {
+      const n1 = Math.floor(Math.random() * 9 + 1);
+      const n2 = Math.floor(Math.random() * 9 + 1);
+      const index = n1 + '' + n2;
+      if (newArr[index]) {
+        newArr[index] = '';
+        n--;
+      }
+    }
+    return newArr;
   }
   addNumber(arr) {
     const list = this.state.list;
