@@ -7,7 +7,7 @@ import About from './views/about';
 function App() {
   return (
     <div className="containter">
-      <Router>
+      <Router basename="sudoku">
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
       </Router>
