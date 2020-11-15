@@ -14,20 +14,23 @@ class Home extends React.Component {
         key: i,
         row: Math.floor(i / 9) + 1,
         col: i % 9 + 1,
-        value: ''
+        value: '',
+        show: true
       })
     }
     this.state = {
       sd: null,
       currentActive: 0,
-      list: list
+      list: list,
+      blankNum: 30
     }
     this.handleActiveChange = this.handleActiveChange.bind(this);
     this.handleNumberClick = this.handleNumberClick.bind(this);
     this.handleCreatClick = this.handleCreatClick.bind(this);
   }
   componentDidMount () {
-    const sd = new Sudoku(30);
+    this.getRandom();
+    const sd = new Sudoku();
     this.setState((state, props) => ({
       sd: sd
     }));
@@ -36,13 +39,33 @@ class Home extends React.Component {
     this.addNumber(arr);
   }
   addNumber(arr) {
-    const list = this.state.list;
-    this.setState({
-      list: list.map((item) => {
-        item.value = arr[item.row + '' + item.col] || '';
-        return item;
-      })
+    this.setState((state, props) => {
+      const list = state.list;
+      return {
+        list: list.map((item) => {
+          if (item.show) {
+            item.value = arr[item.row + '' + item.col] || '';
+          } else {
+            item.value = '';
+          }
+          return item;
+        })
+      }
     })
+  }
+  getRandom() {
+    const list = this.state.list;
+    const blankNum = this.state.blankNum;
+    for (let i = 0; i < blankNum; i++) {
+      let index = Math.floor(Math.random() * 81);
+      while (!list[index].show) {
+        index = Math.floor(Math.random() * 81);
+      }
+      list[index].show = false;
+    }
+    this.setState({
+      list: list
+    });
   }
   handleActiveChange(cell) {
     const index = cell.index;
@@ -82,6 +105,7 @@ class Home extends React.Component {
         <NumberButton onNumberClick={this.handleNumberClick}/>
         <div className="tips-wrapper">
           <button className="tips-button" onClick={this.handleCreatClick}>重新生成</button>
+          <button className="tips-button" onClick={this.handleCreatClick}>删除</button>
         </div>
       </div>
     );
