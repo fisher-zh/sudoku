@@ -19,6 +19,7 @@ class Home extends React.Component {
       })
     }
     this.state = {
+      blankNum: 30,
       sd: null,
       currentActive: 0,
       list: list,
@@ -36,7 +37,22 @@ class Home extends React.Component {
     }));
     sd.init();
     const arr = sd.sudukuArray;
-    this.addNumber(arr);
+    console.log(arr);
+    const showArr = this.getShowArr(arr, this.state.blankNum);
+    this.addNumber(showArr);
+  }
+  getShowArr (arr, n) {
+    let newArr = [].concat(arr);
+    while (n > 0) {
+      const n1 = Math.floor(Math.random() * 9 + 1);
+      const n2 = Math.floor(Math.random() * 9 + 1);
+      const index = n1 + '' + n2;
+      if (newArr[index]) {
+        newArr[index] = '';
+        n--;
+      }
+    }
+    return newArr;
   }
   addNumber(arr) {
     this.setState((state, props) => {

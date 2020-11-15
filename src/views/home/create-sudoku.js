@@ -1,6 +1,5 @@
 class Suduku {
-  constructor(blankNum) {
-    this.blankNum = blankNum || 30;
+  constructor() {
     this.restartNumber = 0;
     // 上一次的数独快照
     this.snapshootUsed = 0;
